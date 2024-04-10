@@ -1,18 +1,31 @@
 import { Person, Sex } from './model/Person';
+import { router } from '@kit.ArkUI';
 
 @Entry
 @Component
 struct Page1 {
   @State message: string = 'page1_列表';
-  personAry: Person[] = [new Person('小红', 12, Sex.girl), new Person('小强', 12, Sex.boy), new Person('人妖', 12, Sex.unKnow)]
+  personAry: Person[] = [new Person('小红', 12, Sex.girl), new Person('小强', 12, Sex.boy), new Person('未知', 12, Sex.unKnow)]
 
   build() {
     Column() {
-      Text(this.message)
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .margin({bottom:10})
-        .backgroundColor(Color.Red)
+      Row() {
+        Text(this.message)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 10 })
+          .backgroundColor(Color.Red)
+        Blank()
+        Text(`返回`)
+          .fontSize(30)
+          .fontWeight(FontWeight.Bold)
+          .margin({ bottom: 10 })
+          .backgroundColor(Color.Red)
+          .onClick(()=> {
+            router.back()
+          })
+      }.width(`100%`)
+
       List({ space: 10 }) {
         ForEach(
           this.personAry,
@@ -20,11 +33,11 @@ struct Page1 {
             ListItem() {
               itemCellRow({ element: item })
             }
-            .padding({left:10,right:10})
-            .margin({top:10})
-          }
+          },
+          (item:Person) => JSON.stringify(item) //生成数组键值
         )
       }
+      .alignListItem(ListItemAlign.Center)
       .backgroundColor(Color.Green)
       .width("100%")
       .height("100%")
@@ -35,25 +48,25 @@ struct Page1 {
 
 @Component
 struct itemCellRow {
-  @State isClick:Boolean = false
+  @State isClick: Boolean = false
   element?: Person
 
   build() {
     Row() {
       Text(this.element?.name ?? "")
         .textExtend(30)
-      Text(`${this.element?.age ?? 0}`)
+      Text(`年龄${this.element?.age ?? 0}`)
         .textExtend(30)
+      Blank()
       Text(this.configurationSex())
         .textExtend(30)
     }
-    .opacity(this.isClick ? 1:0.5)
-    .onClick(()=>{
+    .opacity(this.isClick ? 1 : 0.5)
+    .onClick(() => {
       this.isClick = !this.isClick
     })
     .align(Alignment.Center)
     .justifyContent(FlexAlign.SpaceAround)
-
     .itemCellStyles()
   }
 
@@ -66,14 +79,15 @@ struct itemCellRow {
     sexName = this.element?.sex == Sex.girl ? "女孩" : "男孩"
     return sexName
   }
-
 }
+
 // 和@Styles不同，@Extend仅支持定义在全局，不支持在组件内部定义。
 // 和@Styles不同，@Extend装饰的方法支持参数，开发者可以在调用时传递参数，调用遵循TS方法传值调用。
 @Extend(Text)
-function textExtend(fontSize:number) {
+function textExtend(fontSize: number) {
   .fontSize(fontSize)
   .fontWeight(FontWeight.Bold)
+  .margin({ left: 15, right: 15 })
 }
 
 /*
@@ -84,7 +98,7 @@ function textExtend(fontSize:number) {
 @Styles
 function itemCellStyles() {
   .backgroundColor(Color.Pink)
-    .width("100%")
-    .height(90)
-    .borderRadius(45)
+  .width("90%")
+  .height(90)
+  .borderRadius(45)
 }
