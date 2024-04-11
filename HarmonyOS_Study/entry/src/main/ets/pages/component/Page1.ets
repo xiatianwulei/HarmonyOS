@@ -1,5 +1,5 @@
-import { Person, Sex } from './model/Person';
-import { router } from '@kit.ArkUI';
+import { Person, Sex } from './model/CommonData';
+import { CommonNavBar } from './CommonNavBar';
 
 @Entry
 @Component
@@ -9,22 +9,7 @@ struct Page1 {
 
   build() {
     Column() {
-      Row() {
-        Text(this.message)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .margin({ bottom: 10 })
-          .backgroundColor(Color.Red)
-        Blank()
-        Text(`返回`)
-          .fontSize(30)
-          .fontWeight(FontWeight.Bold)
-          .margin({ bottom: 10 })
-          .backgroundColor(Color.Red)
-          .onClick(()=> {
-            router.back()
-          })
-      }.width(`100%`)
+      CommonNavBar({title:this.message})
 
       List({ space: 10 }) {
         ForEach(

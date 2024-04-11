@@ -2,6 +2,10 @@
   "src": [
     "pages/Index",
     "pages/component/Page1",
-    "pages/component/Page2"
+    "pages/component/Page2",
+    "pages/component/Page3",
+    "pages/component/CommonNavBar",
+    "pages/component/Page4",
+    "pages/component/Page5"
   ]
 }

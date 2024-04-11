@@ -68,12 +68,12 @@ async function checkMock(abilityDelegator: abilityDelegatorRegistry.AbilityDeleg
     } catch (error) {
       let code = (error as BusinessError).code;
       let message = (error as BusinessError).message;
-      hilog.error(0x0000, tag, `abilityDelegator.setMockList failed, error code: ${code}, message: ${message}.`);
+      hilog.error(0x0000, tag, `abilityDelegator.setMockList failed, error code: ${code}, title: ${message}.`);
     }
   } catch (error) {
     let code = (error as BusinessError).code;
     let message = (error as BusinessError).message;
-    hilog.error(0x0000, tag, `ResourceManager:callback getRawFileContent failed, error code: ${code}, message: ${message}.`);
+    hilog.error(0x0000, tag, `ResourceManager:callback getRawFileContent failed, error code: ${code}, title: ${message}.`);
   }
 }
 

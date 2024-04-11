@@ -4,8 +4,8 @@ import { router } from '@kit.ArkUI';
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  @State pageAry: string[] = ["page1列表", "page2基本组件"]
-  private  parUrlAry: string[] = [`pages/component/Page1`, `pages/component/Page2`]
+  @State pageAry: string[] = ["page1列表", "page2基本组件",`page3列表组件`]
+  private  parUrlAry: string[] = [`pages/component/Page1`, `pages/component/Page2`,`pages/component/Page4`]
 
   build() {
     Row() {
@@ -35,7 +35,7 @@ struct Index {
                     , err => {
                       if (err) {
                         // 100001 内部渲染错误  100002 路由地址错误
-                        console.error(`Invoke pushUrl failed, code is ${err.code}, message is ${err.message}`);
+                        console.error(`Invoke pushUrl failed, code is ${err.code}, title is ${err.message}`);
                       }
                     }
                   )
