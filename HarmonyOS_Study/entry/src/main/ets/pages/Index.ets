@@ -4,8 +4,8 @@ import { router } from '@kit.ArkUI';
 @Component
 struct Index {
   @State message: string = 'Hello World';
-  @State pageAry: string[] = ["page1列表", "page2基本组件",`page3列表组件`]
-  private  parUrlAry: string[] = [`pages/component/Page1`, `pages/component/Page2`,`pages/component/Page4`]
+  @State pageAry: string[] = ["page1列表", "page2基本组件",`page3列表组件`,`page11`]
+  private  parUrlAry: string[] = [`pages/component/Page1`, `pages/component/Page2`,`pages/component/Page4`,'pages/component/Page11']
 
   build() {
     Row() {
